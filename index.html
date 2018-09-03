@@ -1,0 +1,475 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Authentication</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+        <link rel="stylesheet" href="css/presentation.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+
+    <!-- I WAS FOCUSED MAINLY ON THE CONTENT, NOT HOW THE CSS ARE MADE ;) -->
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+                    <section data-background-color="DodgerBlue">
+                        <h1>WebApps Security</h1>
+                        <p>Authentication</p>
+                        <small>Damian Patoka 2018</small>
+                    </section>
+                    <section data-background-color="green">
+                        <h1>Authentication?</h1>
+                    </section>
+                    <section data-background-color="orange">
+                        <h1>Authorisation?</h1>
+                    </section>
+				</section>
+				<section>
+                    <section data-background-image="img/question.jpg" data-background-opacity="0.6">
+                        <h1 class="mark-white-on-black">Attack Scenarios?</h1>
+                        <div style="margin-top:50px;">
+                            <p class="fragment mark-black-on-yellow">Credential stuffing</p></br></br>
+                            <p class="fragment mark-black-on-yellow">Passwords as a sole factor</p></br></br>
+                        </div>
+                    </section>
+				</section>
+				<section>
+                <section data-background-color="orange">
+                    <h1>Vulnerabilities</h1>
+                </section>
+                <section data-background-image="img/question.jpg" data-background-opacity="0.6">
+                    <h1 class="mark-white-on-black">Credential stuffing?</h1>
+                    <div style="margin-top:50px;">
+                        <p class="fragment mark-black-on-yellow">list of valid usernames and passwords</p></br></br>
+                    </div>
+                </section>
+                    <aside class="notes">
+                        <ul>
+                            <li>flow:
+                                <ul>
+                                    <li>automated check which are valid (0.1 - 0.2%)</li>
+                                    <li>attacker drains stolen accounts of stored value and information (reuse)</li>
+                                </ul>
+                            </li>
+                            <li>application can be used as a password oracle
+                                <ul>
+                                    <li>to determine if the credentials are valid</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section data-background-image="img/question.jpg" data-background-opacity="0.6">
+                    <h1 class="mark-white-on-black">Automated attacks?</h1>
+                    <div style="margin-top:50px;">
+                        <p class="fragment mark-black-on-yellow">brute force</p></br></br>
+                    </div>
+                </section>
+
+                <section data-background-image="img/question.jpg" data-background-opacity="0.6">
+                    <h1 class="mark-white-on-black">Passwords created?</h1>
+                    <div style="margin-top:50px;">
+                        <p class="fragment mark-black-on-yellow">default, weak, or well-known</p></br></br>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>such as "Password1" or "admin/admin“</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section data-background-image="img/question.jpg" data-background-opacity="0.6">
+                    <h1 class="mark-white-on-black">Passwords rest?</h1>
+                    <div style="margin-top:50px;">
+                        <p class="fragment mark-black-on-yellow">plain text or weakly hashed</p></br></br>
+                    </div>
+                </section>
+
+                <section data-background-image="img/question.jpg" data-background-opacity="0.6">
+                    <h1 class="mark-white-on-black">Credential recovery?</h1>
+                    <div style="margin-top:50px;">
+                        <p class="fragment mark-black-on-yellow">"knowledge-based answers"</p></br></br>
+                    </div>
+                </section>
+
+                <section data-background-image="img/question.jpg" data-background-opacity="0.6">
+                    <h1 class="mark-white-on-black">Multi-factor authentication?</h1>
+                    <div style="margin-top:50px;">
+                        <p class="fragment mark-black-on-yellow">missing or ineffective</p></br></br>
+                    </div>
+                </section>
+
+				<section data-background-image="img/toolkit-m.jpg">
+					<h1 class="mark-white-on-black">Security toolkit</h1>
+				</section>
+				<section>
+                    <section data-background-image="img/theory-m.jpg">
+                        <h1 class="mark-white-on-black">Theory</h1>
+                    </section>
+                    <section data-background-image="img/question.jpg">
+                        <h1 class="mark-white-on-black">The highest security level for every app?</h1>
+                        <aside class="notes">
+                            <ul>
+                                <li>What kind of security levels there might be?</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section data-background-color="white">
+                        <p class="mark-white-on-black">Authentication Assurance Level (AAL)</p>
+                        <p>Digital Identity Guidelines: Authentication and Lifecycle Management</p>
+                        <img src="img/commerce_logo.png">
+                    </section>
+                    <section data-background-color="DodgerBlue">
+                        <h1>Level 1</h1>
+                        <p class="fragment"><span class="mark-blue-on-white">lower-risk applications</span> without Sensitive Personal Information (SPI)</p><br>
+                        <p class="fragment">only single-factor authentication:</p>
+                        <p class="fragment mark-blue-on-white">password</p>
+                        <aside class="notes">
+                            <ul>
+                                <li>SPI can: identify, contact, or locate a single person</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section data-background-color="DodgerBlue">
+                        <h1>Level 2</h1>
+                        <p class="fragment"><span class="mark-blue-on-white">higher-risk applications</span> that contain SPI</p><br>
+                        <p class="fragment">multi-factor authentication is required:</p>
+                        <p class="fragment"><span class="mark-blue-on-white">One Time Password</span></p>
+                    </section>
+                    <section data-background-image="img/question.jpg" data-background-opacity="0.60" data-background-color="black">
+                        <p class="mark-white-on-green">Types of multi-factor authentication?</p><br/></br>
+                        <p class="fragment mark-white-on-black">Something you know <span class="fragment">– password or PIN</span></p></br>
+                        <p class="fragment mark-white-on-black">Something you own  <span class="fragment">– token or phone</span></p></br>
+                        <p class="fragment mark-white-on-black">Something you are  <span class="fragment">– biometrics, such as a fingerprint</span></p>
+                    </section>
+                    <section data-background-color="DodgerBlue">
+                        <h1>Level 3</h1>
+                        <p class="fragment">the system compromise could lead to </p>
+                        <p class="fragment mark-blue-on-white">harm: personal or public</p></br></br>
+                        <p class="fragment">proof of possession of a <span class="mark-blue-on-white">key</span></p>
+                        <p class="fragment">through a <span class="mark-blue-on-white">cryptographic protocol</span></p>
+                        <aside class="notes">
+                            <ul>
+                                <li>Transport Layer Security</li>
+                                <li>Secure Shell (SSH)</li>
+                            </ul>
+                        </aside>
+                    </section>
+				</section>
+
+				<section>
+                    <section data-background-image="img/practice.jpg">
+                        <h1 class="mark-white-on-black">Practice</h1>
+                    </section>
+                </section>
+                <section data-background-image="img/say-no-to-default.jpg">
+                    <h1 class="mark-white-on-black">Say <b style="color:red;">NO</b> to <i style="color:red;">default</i> credentials</h1>
+                    <aside class="notes">
+                        <ul>
+                            <li>Do not ship or deploy with any default credentials, particularly for admin users</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <section data-background-image="img/my-name-is.jpg">
+                        <h1 class="mark-white-on-black">User ID creation</h1>
+                    </section>
+                    <section>
+                        <p class="mark-black-on-white">usernames / user IDs:</p>
+                            <p class="fragment fade-in-then-semi-out">case insensitive</p>
+                            <p class="fragment fade-in-then-semi-out">unique</p>
+                            <p class="fragment">disallow email addresses as user IDs</p>
+                        <aside class="notes">
+                            <ul>
+                                <li>email addresses are reused as user IDs on multiple sites - Credential Stuffing</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section data-background-image="img/question.jpg" data-background-opacity="0.60" data-background-color="black">
+                        <h1 class="mark-white-on-black">User id for a high security app?</h1>
+                        <div class="fragment" style="margin-top:50px;">
+                            <p class="mark-black-on-yellow">assigned and secret </p><br/>
+                            <p class="mark-black-on-yellow">instead of user-defined public data</p>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <section data-background-image="img/password-creation.jpeg">
+                        <h1>Password creation</h1>
+                    </section>
+
+                    <section data-background-image="img/weak-password-checks.jpg">
+                        <h1 class="mark-white-on-black">Weak-password checks</h1>
+                    </section>
+
+                    <section data-background-color="yellow">
+                        <p class="mark-white-on-black">Testing passwords against:</p>
+                        <p class="fragment fade-in-then-semi-out">top 10000 worst passwords</p>
+                        <p class="fragment fade-in-then-semi-out">previous breach corpuses, dictionary words</p>
+                        <p class="fragment">context-specific words: service name, username</p>
+                    </section>
+
+                    <section data-background-image="img/password-length.jpg">
+                        <h1 class="mark-white-on-black">Password policies</h1>
+                        <div class="fragment" style="margin-top:50px;">
+                            <p class="mark-black-on-yellow">length, complexity and rotations</p>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>When complex rules
+                                    <ul>
+                                        <li>People have limited ability to memorize complex, arbitrary secrets</li>
+                                        <li>so they reuse passwords / logins</li>
+                                    </ul>
+                                </li>
+                                <li>Better approach
+                                    <ul>
+                                        <li>long paswords provide enough entropy</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+                <section>
+                    <section data-background-image="img/existing-passwords-3.jpg">
+                        <h1 class="mark-white-on-black">Existing passwords</h1>
+                    </section>
+                    <section data-background-image="img/secure-password-recovery.jpg">
+                        <h1 class="mark-white-on-black">Password Recovery</h1>
+                        <div style="margin-top:50px;">
+                            <p class="fragment mark-black-on-yellow">out-of-band side-channel:</p></br>
+                            <p class="fragment mark-black-on-yellow">different email or an SMS</p>
+                        </div>
+
+                    </section>
+                    <section data-background-image="img/store-password-in-a-secure-fashion.jpg">
+                        <h1 class="fragment mark-white-on-black">Password storage</h1>
+                        <div style="margin-top:50px;">
+                            <p class="fragment mark-black-on-yellow">Argon2</p></br></br>
+                            <p class="fragment mark-black-on-yellow">Assume eventual compromise</p>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>Argon2 - the winner in competitions
+                                </li>
+                                <li>Assume eventual compromise
+                                    <ul>
+                                        <li>Disallow easy changes to user accounts</li>
+                                        <li>Have a Plan B</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </aside>
+
+                    </section>
+                    <section data-background-image="img/transmit-passwords-only-over-tls.jpg">
+                        <h1 class="mark-white-on-black">Passwords transmission</h1>
+                        <div style="margin-top:50px;">
+                            <p class="fragment mark-black-on-yellow">Only over TLS or Other Strong Transport</p></br></br>
+                        </div>
+
+                    </section>
+                    <section data-background-image="img/help-password-managers.jpg">
+                        <h1 class="fragment mark-white-on-black">Help password Managers</h1>
+                    </section>
+
+                    <section data-background-color="yellow">
+                        <p class="mark-white-on-black">Help with:</p>
+                            <p class="fragment fade-in-then-semi-out">standard HTML forms for username and password input with appropriate `type` attributes</p>
+                            <p class="fragment fade-in-then-semi-out">allow passwords lengths up to 128 characters</p>
+                            <p class="fragment">do not artificially prevent copy/paste</p>
+                    </section>
+
+                </section>
+                <section>
+                    <section data-background-image="img/credential-stuffing-prevention.jpg">
+                        <h1 class="mark-white-on-black">Credential Stuffing Prevention</h1>
+                    </section>
+                    <section data-background-image="img/enumeration-attacks.jpg">
+                        <h1 class="mark-white-on-black">Account enumeration</h1>
+                        <div style="margin-top:50px;">
+                            <p class="fragment mark-black-on-yellow">Use the same messages for all outcomes</p></br></br>
+                            <p class="fragment mark-black-on-yellow">Ensure registration, credential recovery, and API pathways are hardened</p></br></br>
+                            <p class="fragment mark-black-on-yellow">Limit or increasingly delay failed login attempts</p></br>
+                        </div>
+                    </section>
+
+                    <section data-background-color="red">
+                        <p class="mark-red-on-white">Incorrect Response Examples?</p>
+                        <p class="fragment fade-in-then-semi-out">"Login for User foo: invalid password"</p>
+                        <p class="fragment fade-in-then-semi-out">"Login failed, invalid user ID"</p>
+                        <p class="fragment fade-in-then-semi-out">"Login failed; account disabled"</p>
+                        <p class="fragment">"Login failed; account disabled"</p>
+                    </section>
+
+                    <section data-background-color="green">
+                        <p class="mark-green-on-white">Correct Response Example?</p>
+                        <p class="fragment">"Login failed; Invalid userID or password"</p>
+                    </section>
+
+                    <section data-background-image="img/multifactor.jpg">
+                        <h1 class="mark-white-on-black">Multi-Factor Authentication</h1>
+                        <div style="margin-top:50px;">
+                            <p class="fragment mark-black-on-yellow">to prevent automated attacks, stolen credential re-use</p></br></br>
+                        </div>
+
+                    </section>
+                    <section data-background-image="img/multistep-login.jpg">
+                        <h1 class="mark-white-on-black">Multi-Step Login Process</h1>
+                        <div style="margin-top:50px;">
+                            <p class="fragment mark-black-on-yellow">Force the client to render the response</p></br>
+                            <p class="fragment mark-black-on-yellow">and include that in the next request</p></br>
+                            <p class="fragment mark-black-on-yellow">with CSRF Tokens</p>
+                        </div>
+                        <aside class="notes">
+                            Cross-Site Request Forgery
+                        </aside>
+
+                    </section>
+                    <section data-background-image="img/ip-blacklists.jpg">
+                        <h1 class="mark-white-on-black">IP blacklists</h1>
+                        <div style="margin-top:50px;">
+                            <p class="fragment mark-black-on-yellow">Requests from a few IP to multiple accounts</p></br></br>
+                            <p class="fragment mark-black-on-yellow">Temporary bans would reduce the negative impact to the customer and business</p></br>
+                        </div>
+                        <aside class="notes">
+                            Temporary ban: 15 min
+                        </aside>
+                    </section>
+                    <section data-background-image="img/device-fingerprinting.jpg">
+                        <h1 class="mark-white-on-black">Device Fingerprinting</h1>
+                        <div style="margin-top:50px;">
+                            <p class="fragment mark-black-on-yellow">Windows/English 5x in a row...</p></br></br>
+                            <p class="fragment mark-black-on-yellow">but next is Linux/Spanish...</p></br>
+                        </div>
+                    </section>
+
+                    <section data-background-image="img/question.jpg" data-background-opacity="0.60" data-background-color="black">
+                        <h1 class="mark-white-on-black">Minimum fingerprint set?</h1>
+                        <div class="fragment" style="margin-top:50px;">
+                            <p class="mark-black-on-yellow">Operating System, Geolocation, Language</p></br></br>
+                        </div>
+                    </section>
+
+                    <section data-background-image="img/question.jpg" data-background-opacity="0.60" data-background-color="black">
+                        <h1 class="mark-white-on-black">Something more?</h1>
+                        <div class="fragment" style="margin-top:50px;">
+                            <p class="mark-black-on-yellow">Time zones, last login times, user agents, java version</p>
+                        </div>
+                    </section>
+
+                    <section data-background-color="green">
+                        <h1>Deal with mismatches:</h1>
+                        <p><span class="fragment mark-black-on-yellow">More variables taken</span><span class="fragment mark-black-on-red"> actions can be more severe</span></p>
+                        <p><span class="fragment mark-black-on-yellow">Less variables taken</span><span class="fragment mark-black-on-red"> likelihood of a false positive</span></p>
+                    </section>
+
+                </section>
+
+
+                <section>
+                    <section data-background-image="img/failed-login.jpg">
+                        <h1 class="mark-white-on-red">Failed login</h1>
+                    </section>
+                    <section data-background-image="img/attempts-policies.jpg">
+                        <h1 class="mark-white-on-black">Attempts policies</h1>
+                    </section>
+                    <section data-background-image="img/logging-monitoring.jpg"  style="text-align: left;">
+                        <h1 class="mark-white-on-black" style="width:55%;">Logging and Monitoring</h1>
+                    </section>
+                </section>
+
+                <section>
+                    <section data-background-image="img/so-sensitive-areas.jpg">
+                        <h1 class="mark-white-on-black">So sensitive...</h1>
+                    </section>
+                    <section data-background-image="img/re-authentication.jpg">
+                        <h1>Re-authentication for Sensitive Features</h1>
+                        <div style="margin-top:50px;">
+                            <p class="fragment mark-black-on-yellow">Without this: </p></br>
+                            <p class="fragment mark-black-on-yellow">CSRF or XSS attack</p>
+                        </div>
+                        <aside class="notes">
+                            <p>Cross-site request forgery (CSRF) - forces an end user to execute unwanted actions on a web application in which they're currently authenticated</p>
+                            <p>Cross-site scripting (XSS) - malicious scripts are injected into otherwise benign and trusted websites</p>
+                        </aside>
+                    </section>
+
+                    <section data-background-image="img/strong-transaction-authentication.jpg">
+                        <h1 class="mark-white-on-black" >Strong Transaction Authentication</h1>
+                        <div style="margin-top:50px;">
+                            <p class="fragment mark-black-on-yellow">Two-way TLS:</p></br>
+                            <p class="fragment mark-black-on-yellow">browser and server authenticate by a certificate</p>
+                        </div>
+                        <aside class="notes">
+                            Transport Layer Security
+                        </aside>
+                    </section>
+
+                    <section data-background-image="img/question.jpg" data-background-opacity="0.60" data-background-color="black">
+                        <h1 class="mark-white-on-black">When to use two way TLS?</h1>
+                        <div style="margin-top:50px;">
+                            <p class="fragment mark-black-on-yellow">access only from a single computer</p></br></br>
+                            <p class="fragment mark-black-on-yellow">user is not easily scared (installation)</p></br></br>
+                            <p class="fragment mark-black-on-yellow">extra step of security required</p></br></br>
+                            <p class="fragment mark-black-on-yellow">for an intranet resources</p></br></br>
+                        </div>
+                    </section>
+                </section>
+                <section>
+                    <section data-background-color="white">
+                        <p class="mark-white-on-black">Reference:</p>
+                        <p><a href="https://www.owasp.org">owasp.org</a></p>
+                        <!--<p><a class="mark-black-on-yellow" href="https://www.owasp.org">owasp.org</a></p>-->
+                        <p><a href="https://pages.nist.gov/800-63-3/sp800-63b.html">Digital Identity Guidelines: Authentication and Lifecycle Management</a></p>
+                        <!--<p><a class="mark-black-on-yellow" href="https://pages.nist.gov/800-63-3/sp800-63b.html">Digital Identity Guidelines: Authentication and Lifecycle Management</a></p>-->
+                    </section>
+                    <section data-background-image="img/thanks.jpg">
+                    </section>
+                </section>
+
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+                history: true,
+                fragmentInURL: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+.mark-white-on-black {
+    display: inline;
+    background-color: black;
+    color: white;
+}
+
+.mark-white-on-green {
+    display: inline;
+    background-color: green;
+    color: white;
+}
+
+.mark-white-on-red {
+    display: inline;
+    background-color: red;
+    color: white;
+}
+
+.mark-black-on-white {
+    display: inline;
+    background-color: white;
+    color: black;
+}
+
+.mark-black-on-yellow {
+    display: inline;
+    background-color: yellow;
+    color: black;
+}
+
+.mark-black-on-red {
+    display: inline;
+    background-color: red;
+    color: black;
+}
+
+.mark-red-on-white {
+    display: inline;
+    background-color: white;
+    color: red;
+}
+
+.mark-green-on-white {
+    display: inline;
+    background-color: white;
+    color: green;
+}
+
+.mark-blue-on-white {
+    display: inline;
+    background-color: white;
+    color: DodgerBlue;
+}
